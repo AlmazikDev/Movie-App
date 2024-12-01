@@ -8,6 +8,7 @@
 import UIKit
 
 class MoviesTableViewCell: UITableViewCell {
+    
     private var movieName: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -18,7 +19,7 @@ class MoviesTableViewCell: UITableViewCell {
     
     private var genreName: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .light)
+        label.font = .systemFont(ofSize: 14, weight: .light)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,7 +63,7 @@ class MoviesTableViewCell: UITableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            genreName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            genreName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             genreName.leadingAnchor.constraint(equalTo: movieName.trailingAnchor, constant: 16),
             genreName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             

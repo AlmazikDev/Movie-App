@@ -14,7 +14,6 @@ enum CellType {
 }
 
 
-
 class GenreCellModel {
     
     var name: String

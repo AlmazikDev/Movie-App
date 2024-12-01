@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         table.backgroundColor = UIColor.secondarySystemBackground
         table.register(GenresTableViewCell.self, forCellReuseIdentifier: "genresCell")
         table.register(MoviesTableViewCell.self, forCellReuseIdentifier: "movieCell")
-        table.register(SelectedGenreCell.self , forCellReuseIdentifier: "selectedGenreCell")
         return table
     }()
     
@@ -76,16 +75,26 @@ extension ViewController: UITableViewDataSource {
             let cell: MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "movieCell",
                                                                           for: indexPath) as! MoviesTableViewCell
             cell.setup(movie: movieModel)
+            movies.append(movieModel)
+           
             return cell
         }
     }
 }
 
 extension ViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(indexPath.row)
+        print(movies)
+        
+        let detailViewController = DetailMovieVC()
+        
+        navigationController?.pushViewController(detailViewController, animated: true)
     }
+    
+    
 }
 
 extension ViewController: GenresTableViewCellDelegate {
