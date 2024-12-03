@@ -48,6 +48,8 @@ class GenresTableViewCell: UITableViewCell {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for iteration in genres.enumerated() {
             let label = UILabel()
+            label.backgroundColor = .systemGray5
+            label.layer.cornerRadius = 30
             label.text = iteration.element.name
             label.tag = iteration.offset
             label.isUserInteractionEnabled = true

@@ -9,6 +9,15 @@ import UIKit
 
 class MoviesTableViewCell: UITableViewCell {
     
+    
+    private var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        view.layer.cornerRadius = 25
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    } ()
+    
     private var movieName: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 20, weight: .bold)
@@ -52,26 +61,34 @@ class MoviesTableViewCell: UITableViewCell {
     }
     
     func setupUI() {
+        contentView.addSubview(containerView)
         contentView.addSubview(movieName)
         contentView.addSubview(genreName)
         contentView.addSubview(movieDescription)
         
         NSLayoutConstraint.activate([
-            movieName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            movieName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            movieName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            movieName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             
         ])
         
         NSLayoutConstraint.activate([
-            genreName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            genreName.leadingAnchor.constraint(equalTo: movieName.trailingAnchor, constant: 16),
-            genreName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            genreName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
+            genreName.leadingAnchor.constraint(equalTo: movieName.trailingAnchor, constant: 30),
+            genreName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             
         ])
         
         NSLayoutConstraint.activate([
             movieDescription.topAnchor.constraint(equalTo: movieName.bottomAnchor, constant: 10),
-            movieDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            movieDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             movieDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
             movieDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])

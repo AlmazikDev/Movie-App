@@ -56,7 +56,7 @@ class DetailMovieVC: UIViewController {
         super.viewDidLoad()
        
        
-        movieNameLabel.text = movie.movieName
+        
         
         
         setupUI()

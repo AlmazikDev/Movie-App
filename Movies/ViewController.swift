@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = UIColor.secondarySystemBackground
+        table.separatorStyle = .none
         table.register(GenresTableViewCell.self, forCellReuseIdentifier: "genresCell")
         table.register(MoviesTableViewCell.self, forCellReuseIdentifier: "movieCell")
         return table
@@ -79,7 +80,10 @@ extension ViewController: UITableViewDataSource {
            
             return cell
         }
+        
     }
+    
+
 }
 
 extension ViewController: UITableViewDelegate {
