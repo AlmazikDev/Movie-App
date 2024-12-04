@@ -11,11 +11,6 @@ import UIKit
 
 class DetailMovieVC: UIViewController {
     
-    var movieName: String?
-    var movieDescription: String?
-    var movieGenre: String?
-    
-    var movie: MovieCellModel!
     
     
     var movieImage: UIImageView = {
@@ -55,11 +50,9 @@ class DetailMovieVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
        
-       
-        
-        
-        
+        view.backgroundColor = .systemBackground
         setupUI()
+        
     }
     
     
@@ -73,7 +66,8 @@ class DetailMovieVC: UIViewController {
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             movieImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            movieImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)//Is it enough only 3 constraints for view?
+            movieImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            movieImage.heightAnchor.constraint(equalToConstant: 260)
         ])
         
         NSLayoutConstraint.activate([

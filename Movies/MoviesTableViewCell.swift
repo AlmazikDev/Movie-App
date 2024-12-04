@@ -28,7 +28,7 @@ class MoviesTableViewCell: UITableViewCell {
     
     private var genreName: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .light)
+        label.font = .systemFont(ofSize: 13, weight: .semibold)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -37,7 +37,7 @@ class MoviesTableViewCell: UITableViewCell {
     
     private var movieDescription: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,6 +47,7 @@ class MoviesTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        selectionStyle = .none
         setupUI()
     }
     
@@ -62,35 +63,33 @@ class MoviesTableViewCell: UITableViewCell {
     
     func setupUI() {
         contentView.addSubview(containerView)
-        contentView.addSubview(movieName)
-        contentView.addSubview(genreName)
-        contentView.addSubview(movieDescription)
+        containerView.addSubview(movieName)
+        containerView.addSubview(genreName)
+        containerView.addSubview(movieDescription)
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            movieName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            movieName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
-            
+            movieName.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            movieName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
         ])
         
         NSLayoutConstraint.activate([
-            genreName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 25),
-            genreName.leadingAnchor.constraint(equalTo: movieName.trailingAnchor, constant: 30),
-            genreName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-            
+            genreName.centerYAnchor.constraint(equalTo: movieName.centerYAnchor),
+            genreName.leadingAnchor.constraint(equalTo: movieName.trailingAnchor, constant: 8),
+            genreName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
         ])
         
         NSLayoutConstraint.activate([
-            movieDescription.topAnchor.constraint(equalTo: movieName.bottomAnchor, constant: 10),
-            movieDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
-            movieDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
-            movieDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            movieDescription.topAnchor.constraint(equalTo: movieName.bottomAnchor, constant: 4),
+            movieDescription.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 18),
+            movieDescription.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -18),
+            movieDescription.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -18)
         ])
         
         
