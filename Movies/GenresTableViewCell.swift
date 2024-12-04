@@ -18,7 +18,8 @@ class GenresTableViewCell: UITableViewCell {
     private var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 16
+        stackView.alignment = .center
+        stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -28,6 +29,7 @@ class GenresTableViewCell: UITableViewCell {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 27, bottom: 0, right: 27)
         return scrollView
     }()
     
@@ -47,16 +49,30 @@ class GenresTableViewCell: UITableViewCell {
         self.genres = genres // what does this line mean ?
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for iteration in genres.enumerated() {
+            let containerView = UIView()
+            containerView.backgroundColor = .systemGray5
+            containerView.layer.cornerRadius = 8
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onGenreWasSelected))
+            containerView.addGestureRecognizer(tapGesture)
+            
             let label = UILabel()
-            label.backgroundColor = .systemGray5
-            label.layer.cornerRadius = 30
+            label.font = .systemFont(ofSize: 18, weight: .regular)
             label.text = iteration.element.name
             label.tag = iteration.offset
             label.isUserInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onGenreWasSelected))
-            label.addGestureRecognizer(tapGesture)
             
-            stackView.addArrangedSubview(label)
+            
+            containerView.addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                label.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 6),
+                label.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 6),
+                label.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -6),
+                label.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -6)
+            ])
+            
+            stackView.addArrangedSubview(containerView)
         }
     }
     
@@ -67,7 +83,7 @@ class GenresTableViewCell: UITableViewCell {
             scrollView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 64)
+            scrollView.heightAnchor.constraint(equalToConstant: 40)
         ])
         
         let widthConstraint = NSLayoutConstraint(item: stackView, attribute: .width, relatedBy: .equal, toItem: scrollView, attribute: .width, multiplier: 1, constant: 1)
