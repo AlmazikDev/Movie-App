@@ -26,16 +26,19 @@ class GenreCellModel {
     
 }
 
+
 class MovieCellModel {
     var movieImage: String
     var movieName: String
     var movieGenre: String
     var movieDescription: String
+
     
     init(movieImage: String, movieName: String, movieGenre: String, movieDescription: String) {
         self.movieImage = movieImage
         self.movieName = movieName
         self.movieGenre = movieGenre
         self.movieDescription = movieDescription
+       
     }
 }
