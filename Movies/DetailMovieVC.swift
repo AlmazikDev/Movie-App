@@ -62,6 +62,14 @@ class DetailMovieVC: UIViewController {
         return label
     }()
     
+    private var castScrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.showsHorizontalScrollIndicator = false
+        return view
+    }()
+    
     private var castParentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -71,38 +79,6 @@ class DetailMovieVC: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-        
-    
-    private var castStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 8
-        stackView.alignment = .center
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
-    
-    private var actorImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 40
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "actor_leo")
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    private var actorNameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 15, weight: .regular)
-        label.numberOfLines = 0
-        label.lineBreakMode = .byTruncatingTail
-        label.text = "Леонардо Ди Каприо"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +93,11 @@ class DetailMovieVC: UIViewController {
         movieNameLabel.text = movie.movieName
         movieDescriptionLabel.text = movie.movieDescription
         movieGenreLabel.text = movie.movieGenre
-         print(movie.actors)
+        for actor in movie.actors {
+            let actorView = CastActorView()
+            actorView.configure(model: actor)
+            castParentStackView.addArrangedSubview(actorView)
+        }
     }
     
     
@@ -128,13 +108,8 @@ class DetailMovieVC: UIViewController {
         containerView.addSubview(movieGenreLabel)
         view.addSubview(containerView)
         view.addSubview(castLabel)
-        castStackView.addArrangedSubview(actorImageView)
-        castStackView.addArrangedSubview(actorNameLabel)
-        castParentStackView.addArrangedSubview(castStackView)
-        castParentStackView.addArrangedSubview(UIView())
-        view.addSubview(castParentStackView)
-        
-        
+        view.addSubview(castScrollView)
+        castScrollView.addSubview(castParentStackView)
         
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -159,7 +134,7 @@ class DetailMovieVC: UIViewController {
             containerView.topAnchor.constraint(equalTo: movieDescriptionLabel.bottomAnchor, constant: 8),
             containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             /*containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -309)*/
-//            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -280)
+            //            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -280)
         ])
         
         NSLayoutConstraint.activate([
@@ -176,24 +151,22 @@ class DetailMovieVC: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            castParentStackView.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 12),
-            castParentStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 17),
-            castParentStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -17)
+            castScrollView.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 12),
+            castScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            castScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            castScrollView.heightAnchor.constraint(equalToConstant: 160)
         ])
         
+        let widthConstraint = NSLayoutConstraint(item: castParentStackView, attribute: .width, relatedBy: .equal,
+                                                 toItem: castScrollView, attribute: .width, multiplier: 1, constant: 1)
+        widthConstraint.priority = .defaultLow
         NSLayoutConstraint.activate([
-            castStackView.widthAnchor.constraint(equalToConstant: 100)
+            castParentStackView.topAnchor.constraint(equalTo: castScrollView.topAnchor),
+            castParentStackView.leadingAnchor.constraint(equalTo: castScrollView.leadingAnchor),
+            castParentStackView.trailingAnchor.constraint(equalTo: castScrollView.trailingAnchor),
+            castParentStackView.bottomAnchor.constraint(equalTo: castScrollView.bottomAnchor),
+            castParentStackView.heightAnchor.constraint(equalTo: castScrollView.heightAnchor),
+            widthConstraint,
         ])
-        
-        NSLayoutConstraint.activate([
-            actorImageView.widthAnchor.constraint(equalToConstant: 80),
-            actorImageView.heightAnchor.constraint(equalToConstant: 80),
-        ])
-        
-        
-        
-            
     }
-    
-    
 }

@@ -5,6 +5,15 @@
 //  Created by Nurzhan Duisembayev on 24.10.2024.
 //
 
+// Modules
+// - MainPage
+// - - ViewController
+// - - all stuff from movies list
+
+// - MoviePage
+// - - DetailViewController
+// - - all stuff from movie detail screen
+
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
