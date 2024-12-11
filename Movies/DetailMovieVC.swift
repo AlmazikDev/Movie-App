@@ -66,7 +66,8 @@ class DetailMovieVC: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 14
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fill
+        stackView.alignment = .leading
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -76,7 +77,7 @@ class DetailMovieVC: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 8
-        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -84,7 +85,7 @@ class DetailMovieVC: UIViewController {
     private var actorImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = imageView.frame.size.width/2
+        imageView.layer.cornerRadius = 40
         imageView.clipsToBounds = true
         imageView.image = UIImage(named: "actor_leo")
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -116,6 +117,7 @@ class DetailMovieVC: UIViewController {
         movieNameLabel.text = movie.movieName
         movieDescriptionLabel.text = movie.movieDescription
         movieGenreLabel.text = movie.movieGenre
+         print(movie.actors)
     }
     
     
@@ -128,8 +130,8 @@ class DetailMovieVC: UIViewController {
         view.addSubview(castLabel)
         castStackView.addArrangedSubview(actorImageView)
         castStackView.addArrangedSubview(actorNameLabel)
-        view.addSubview(castStackView)
         castParentStackView.addArrangedSubview(castStackView)
+        castParentStackView.addArrangedSubview(UIView())
         view.addSubview(castParentStackView)
         
         
@@ -174,23 +176,20 @@ class DetailMovieVC: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            castStackView.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 12),
-            castStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 17),
-            castStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -17),
-            castStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -175)
+            castParentStackView.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 12),
+            castParentStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 17),
+            castParentStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -17)
         ])
-        
-//        NSLayoutConstraint.activate([
-//            actorImageView.widthAnchor.constraint(equalToConstant: 80),
-//            actorImageView.heightAnchor.constraint(equalToConstant: 80),
-//        ])
         
         NSLayoutConstraint.activate([
-            actorNameLabel.topAnchor.constraint(equalTo: actorImageView.bottomAnchor, constant: 8),
-//            actorNameLabel.leadingAnchor.constraint(equalTo: castStackView.leadingAnchor, constant: 8),
-//            actorNameLabel.trailingAnchor.constraint(equalTo: castStackView.trailingAnchor, constant: -8),
-            actorNameLabel.bottomAnchor.constraint(equalTo: castStackView.bottomAnchor, constant: 8)
+            castStackView.widthAnchor.constraint(equalToConstant: 100)
         ])
+        
+        NSLayoutConstraint.activate([
+            actorImageView.widthAnchor.constraint(equalToConstant: 80),
+            actorImageView.heightAnchor.constraint(equalToConstant: 80),
+        ])
+        
         
         
             

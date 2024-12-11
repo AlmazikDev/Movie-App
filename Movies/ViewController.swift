@@ -39,11 +39,14 @@ class ViewController: UIViewController {
             .movie(MovieCellModel(movieImage: "inception_img",
                                   movieName: "Начало",
                                   movieGenre: "Драма",
-                                  movieDescription: "Группа специалистов проникает в сознание людей через сны, чтобы украсть или внедрить идеи.")),
+                                  movieDescription: "Группа специалистов проникает в сознание людей через сны, чтобы украсть или внедрить идеи.",
+                                  actors: [ActorModel(actorImage: "", actorName: "Леонардо Ди Каприо"),
+                                           ActorModel(actorImage: "", actorName: "Роберт Дауни Младший")])),
             .movie(MovieCellModel(movieImage: "squidGame_img",
                                   movieName: "Игра в Кальмара",
                                   movieGenre: "Триллер",
-                                  movieDescription: "Сериал повествует о группе людей, которые из-за нужды в деньгах принимают приглашение на участие в тайном турнире на выживание с финальным призом в размере 45,6 млрд вон (38,5 млн долларов США)"))
+                                  movieDescription: "Сериал повествует о группе людей, которые из-за нужды в деньгах принимают приглашение на участие в тайном турнире на выживание с финальным призом в размере 45,6 млрд вон (38,5 млн долларов США)",
+                                  actors: []))
         ]
         tableView.reloadData()
     }
