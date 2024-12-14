@@ -43,7 +43,12 @@ class ViewController: UIViewController {
                                   actors: [
                                     ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
                                     ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо")
+                                  ], producers: [
+                                    ProducerModel(producerImage: "actor_leo", producerName: "Ернар Нургалиев", producerPosition: "Режиссёр", producerMovies: "Келинжан, Келинжан 2, Жизнь после, Жар жар ,Мой папа - тигр, Келинжан 3"),
+                                    ProducerModel(producerImage: "actor_leo", producerName: "Ернар Нургалиев", producerPosition: "Режиссёр", producerMovies: "Келинжан, Келинжан 2, Жизнь после, Жар жар ,Мой папа - тигр, Келинжан 3")
                                   ])),
+            
+                                    
             .movie(MovieCellModel(movieImage: "squidGame_img",
                                   movieName: "Игра в Кальмара",
                                   movieGenre: "Триллер",
@@ -59,7 +64,9 @@ class ViewController: UIViewController {
                                     ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
                                     ActorModel(actorImage: "actor_leo", actorName: "Роберт Дауни Младший")
                                     
-                                  ]))
+                                  ], producers: [ProducerModel(producerImage: "actor_leo", producerName: "Ернар Нургалиев", producerPosition: "Режиссёр", producerMovies: "Келинжан, Келинжан 2, Жизнь после, Жар жар ,Мой папа - тигр, Келинжан 3"),
+                                                 ProducerModel(producerImage: "actor_leo", producerName: "Ернар Нургалиев", producerPosition: "Режиссёр", producerMovies: "Келинжан, Келинжан 2, Жизнь после, Жар жар ,Мой папа - тигр, Келинжан 3")])),
+                                    
         ]
         tableView.reloadData()
     }

@@ -80,6 +80,36 @@ class DetailMovieVC: UIViewController {
         return stackView
     }()
     
+    private var filmingGroupLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.textAlignment = .left
+        label.text = "Сьемочная группа"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var filmingGroupScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = true
+//        scrollView.backgroundColor = .systemBlue
+        return scrollView
+    }()
+    
+    private var FilmingGroupStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 14
+        stackView.distribution = .fill
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        
@@ -98,6 +128,12 @@ class DetailMovieVC: UIViewController {
             actorView.configure(model: actor)
             castParentStackView.addArrangedSubview(actorView)
         }
+         
+        for producer in movie.producers {
+            let producerView = FilmingGroupView()
+            producerView.configure(producer: producer)
+            FilmingGroupStackView.addArrangedSubview(producerView)
+         }
     }
     
     
@@ -110,6 +146,14 @@ class DetailMovieVC: UIViewController {
         view.addSubview(castLabel)
         view.addSubview(castScrollView)
         castScrollView.addSubview(castParentStackView)
+        view.addSubview(filmingGroupLabel)
+        view.addSubview(filmingGroupScrollView)
+//        filmingGroupScrollView.addSubview(FilmingGroupContentView)
+        view.addSubview(filmingGroupScrollView)
+        filmingGroupScrollView.addSubview(FilmingGroupStackView)
+        
+
+        
         
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -167,6 +211,31 @@ class DetailMovieVC: UIViewController {
             castParentStackView.bottomAnchor.constraint(equalTo: castScrollView.bottomAnchor),
             castParentStackView.heightAnchor.constraint(equalTo: castScrollView.heightAnchor),
             widthConstraint,
+        ])
+        
+        NSLayoutConstraint.activate([
+            filmingGroupLabel.topAnchor.constraint(equalTo: castParentStackView.bottomAnchor, constant: 12),
+            filmingGroupLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            filmingGroupLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+        ])
+        
+        NSLayoutConstraint.activate([
+            filmingGroupScrollView.topAnchor.constraint(equalTo: filmingGroupLabel.bottomAnchor, constant: 12),
+            filmingGroupScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            filmingGroupScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            filmingGroupScrollView.heightAnchor.constraint(equalToConstant: 220)
+        ])
+        
+        let widthConstraintgGroupScrollView = NSLayoutConstraint(item: FilmingGroupStackView, attribute: .width, relatedBy: .equal, toItem: filmingGroupScrollView, attribute: .width, multiplier: 1, constant: 1)
+        
+        widthConstraintgGroupScrollView.priority = .defaultLow
+        NSLayoutConstraint.activate([
+            FilmingGroupStackView.topAnchor.constraint(equalTo: filmingGroupScrollView.topAnchor),
+            FilmingGroupStackView.leadingAnchor.constraint(equalTo: filmingGroupScrollView.leadingAnchor, constant: 15),
+            FilmingGroupStackView.trailingAnchor.constraint(equalTo: filmingGroupScrollView.trailingAnchor),
+            FilmingGroupStackView.bottomAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor),
+            FilmingGroupStackView.heightAnchor.constraint(equalTo: filmingGroupScrollView.heightAnchor),
+            widthConstraintgGroupScrollView
         ])
     }
 }
