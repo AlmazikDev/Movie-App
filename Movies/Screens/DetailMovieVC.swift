@@ -11,6 +11,14 @@ import UIKit
 
 class DetailMovieVC: UIViewController {
     
+    private var mainScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    
+    
     var movieImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -138,6 +146,7 @@ class DetailMovieVC: UIViewController {
     
     
     func setupUI() {
+        view.addSubview(mainScrollView)
         view.addSubview(movieImage)
         view.addSubview(movieNameLabel)
         view.addSubview(movieDescriptionLabel)
@@ -153,7 +162,13 @@ class DetailMovieVC: UIViewController {
         filmingGroupScrollView.addSubview(FilmingGroupStackView)
         
 
-        
+        NSLayoutConstraint.activate([
+            mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mainScrollView.widthAnchor.constraint(equalTo:view.widthAnchor)
+        ])
         
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

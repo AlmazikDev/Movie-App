@@ -49,6 +49,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5297F8432D10A11B006F69CC /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				7CEBCA532CCA719300B661C5 /* ViewController.swift */,
+				525BCD6C2CFC9E1800CAA684 /* DetailMovieVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		5297F8442D10A153006F69CC /* Custom cells */ = {
+			isa = PBXGroup;
+			children = (
+				52160A952CFF93A600328D01 /* GenresTableViewCell.swift */,
+				52895BDE2CF109D100A2FC28 /* MoviesTableViewCell.swift */,
+			);
+			path = "Custom cells";
+			sourceTree = "<group>";
+		};
+		5297F8452D10A1C0006F69CC /* Custom views */ = {
+			isa = PBXGroup;
+			children = (
+				7C1B085E2D09CDCB00CBB684 /* CastActorView.swift */,
+				527509D42D0C907D00E643C1 /* FilmingGroupView.swift */,
+			);
+			path = "Custom views";
+			sourceTree = "<group>";
+		};
+		5297F8462D10A1E9006F69CC /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				7CEBCA4F2CCA719300B661C5 /* AppDelegate.swift */,
+				7CEBCA512CCA719300B661C5 /* SceneDelegate.swift */,
+				7CEBCA552CCA719300B661C5 /* Main.storyboard */,
+				7CEBCA582CCA719500B661C5 /* Assets.xcassets */,
+				7CEBCA5A2CCA719500B661C5 /* LaunchScreen.storyboard */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		7CEBCA432CCA719300B661C5 = {
 			isa = PBXGroup;
 			children = (
@@ -68,18 +107,11 @@
 		7CEBCA4E2CCA719300B661C5 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
-				7CEBCA4F2CCA719300B661C5 /* AppDelegate.swift */,
-				7CEBCA512CCA719300B661C5 /* SceneDelegate.swift */,
-				7CEBCA532CCA719300B661C5 /* ViewController.swift */,
-				525BCD6C2CFC9E1800CAA684 /* DetailMovieVC.swift */,
-				7C1B085E2D09CDCB00CBB684 /* CastActorView.swift */,
-				527509D42D0C907D00E643C1 /* FilmingGroupView.swift */,
-				52160A952CFF93A600328D01 /* GenresTableViewCell.swift */,
+				5297F8462D10A1E9006F69CC /* Supporting */,
+				5297F8452D10A1C0006F69CC /* Custom views */,
+				5297F8442D10A153006F69CC /* Custom cells */,
+				5297F8432D10A11B006F69CC /* Screens */,
 				7CEBCA652CCA79CA00B661C5 /* Models */,
-				52895BDE2CF109D100A2FC28 /* MoviesTableViewCell.swift */,
-				7CEBCA552CCA719300B661C5 /* Main.storyboard */,
-				7CEBCA582CCA719500B661C5 /* Assets.xcassets */,
-				7CEBCA5A2CCA719500B661C5 /* LaunchScreen.storyboard */,
 				7CEBCA5D2CCA719500B661C5 /* Info.plist */,
 			);
 			path = Movies;
