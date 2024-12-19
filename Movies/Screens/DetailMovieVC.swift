@@ -17,7 +17,11 @@ class DetailMovieVC: UIViewController {
         return scrollView
     }()
     
-    
+    private var mainContentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     var movieImage: UIImageView = {
         let imageView = UIImageView()
@@ -44,7 +48,7 @@ class DetailMovieVC: UIViewController {
         return label
     }()
     
-    private var containerView: UIView = {
+    private var genreContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray5
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -100,8 +104,8 @@ class DetailMovieVC: UIViewController {
     private var filmingGroupScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.showsHorizontalScrollIndicator = true
-//        scrollView.backgroundColor = .systemBlue
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         return scrollView
     }()
     
@@ -146,73 +150,100 @@ class DetailMovieVC: UIViewController {
     
     
     func setupUI() {
-        view.addSubview(mainScrollView)
-        view.addSubview(movieImage)
-        view.addSubview(movieNameLabel)
-        view.addSubview(movieDescriptionLabel)
-        containerView.addSubview(movieGenreLabel)
-        view.addSubview(containerView)
-        view.addSubview(castLabel)
-        view.addSubview(castScrollView)
-        castScrollView.addSubview(castParentStackView)
-        view.addSubview(filmingGroupLabel)
-        view.addSubview(filmingGroupScrollView)
-//        filmingGroupScrollView.addSubview(FilmingGroupContentView)
-        view.addSubview(filmingGroupScrollView)
-        filmingGroupScrollView.addSubview(FilmingGroupStackView)
+//        view.addSubview(mainContentView)
+//        view.addSubview(mainScrollView)
+//        view.addSubview(movieImage)
+//        view.addSubview(movieNameLabel)
+//        view.addSubview(movieDescriptionLabel)
+//        containerView.addSubview(movieGenreLabel)
+//        view.addSubview(containerView)
+//        view.addSubview(castLabel)
+//        view.addSubview(castScrollView)
+//        castScrollView.addSubview(castParentStackView)
+//        view.addSubview(filmingGroupLabel)
+//        view.addSubview(filmingGroupScrollView)
+////        filmingGroupScrollView.addSubview(FilmingGroupContentView)
+//        filmingGroupScrollView.addSubview(FilmingGroupStackView)
         
-
+        mainContentView.addSubview(movieImage)
+        mainContentView.addSubview(movieNameLabel)
+        mainContentView.addSubview(movieDescriptionLabel)
+        mainContentView.addSubview(genreContainerView)
+        genreContainerView.addSubview(movieGenreLabel)
+        mainContentView.addSubview(castLabel)
+        mainContentView.addSubview(castScrollView)
+        castScrollView.addSubview(castParentStackView)
+        mainContentView.addSubview(filmingGroupLabel)
+        mainContentView.addSubview(filmingGroupScrollView)
+        filmingGroupScrollView.addSubview(FilmingGroupStackView)
+        mainContentView.addSubview(filmingGroupScrollView)
+        view.addSubview(mainScrollView)
+        mainScrollView.addSubview(mainContentView)
+    
+       
+        
+        
+        
         NSLayoutConstraint.activate([
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
             mainScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mainScrollView.widthAnchor.constraint(equalTo:view.widthAnchor)
+        ])
+        
+        let mainContentViewHeightConstraint = NSLayoutConstraint(item: mainContentView, attribute: .height, relatedBy: .equal, toItem: mainScrollView, attribute: .height, multiplier: 1, constant: 1)
+        
+        mainContentViewHeightConstraint.priority = .defaultLow
+        NSLayoutConstraint.activate([
+            mainContentView.topAnchor.constraint(equalTo: mainScrollView.topAnchor),
+            mainContentView.leadingAnchor.constraint(equalTo: mainScrollView.leadingAnchor),
+            mainContentView.trailingAnchor.constraint(equalTo: mainScrollView.trailingAnchor),
+            mainContentView.bottomAnchor.constraint(equalTo: mainScrollView.bottomAnchor),
+            mainContentView.widthAnchor.constraint(equalTo: mainScrollView.widthAnchor),
+            mainContentViewHeightConstraint
         ])
         
         NSLayoutConstraint.activate([
-            movieImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            movieImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            movieImage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            movieImage.topAnchor.constraint(equalTo: mainContentView.topAnchor),
+            movieImage.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            movieImage.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
             movieImage.heightAnchor.constraint(equalToConstant: 260)
         ])
         
         NSLayoutConstraint.activate([
             movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 16),
-            movieNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            movieNameLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            movieNameLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
+            movieNameLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16)
         ])
         
         NSLayoutConstraint.activate([
             movieDescriptionLabel.topAnchor.constraint(equalTo: movieNameLabel.bottomAnchor, constant: 8),
-            movieDescriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            movieDescriptionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
+            movieDescriptionLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
+            movieDescriptionLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16)
         ])
         
         NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: movieDescriptionLabel.bottomAnchor, constant: 8),
-            containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            /*containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -309)*/
-            //            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -280)
+            genreContainerView.topAnchor.constraint(equalTo: movieDescriptionLabel.bottomAnchor, constant: 8),
+            genreContainerView.leadingAnchor.constraint(equalTo: mainContentView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
         ])
         
         NSLayoutConstraint.activate([
-            movieGenreLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 4),
-            movieGenreLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 9),
-            movieGenreLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -9),
-            movieGenreLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -4),
+            movieGenreLabel.topAnchor.constraint(equalTo: genreContainerView.topAnchor, constant: 4),
+            movieGenreLabel.leadingAnchor.constraint(equalTo: genreContainerView.leadingAnchor, constant: 9),
+            movieGenreLabel.trailingAnchor.constraint(equalTo: genreContainerView.trailingAnchor, constant: -9),
+            movieGenreLabel.bottomAnchor.constraint(equalTo: genreContainerView.bottomAnchor, constant: -4),
         ])
         
         NSLayoutConstraint.activate([
-            castLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 17),
-            castLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            castLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -15)
+            castLabel.topAnchor.constraint(equalTo: genreContainerView.bottomAnchor, constant: 17),
+            castLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 15),
+            castLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -15)
         ])
         
         NSLayoutConstraint.activate([
             castScrollView.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 12),
-            castScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            castScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            castScrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            castScrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
             castScrollView.heightAnchor.constraint(equalToConstant: 160)
         ])
         
@@ -230,15 +261,16 @@ class DetailMovieVC: UIViewController {
         
         NSLayoutConstraint.activate([
             filmingGroupLabel.topAnchor.constraint(equalTo: castParentStackView.bottomAnchor, constant: 12),
-            filmingGroupLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            filmingGroupLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            filmingGroupLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
+            filmingGroupLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16),
         ])
         
         NSLayoutConstraint.activate([
             filmingGroupScrollView.topAnchor.constraint(equalTo: filmingGroupLabel.bottomAnchor, constant: 12),
-            filmingGroupScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            filmingGroupScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            filmingGroupScrollView.heightAnchor.constraint(equalToConstant: 220)
+            filmingGroupScrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            filmingGroupScrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
+            filmingGroupScrollView.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
+            filmingGroupScrollView.heightAnchor.constraint(equalToConstant: 120)
         ])
         
         let widthConstraintgGroupScrollView = NSLayoutConstraint(item: FilmingGroupStackView, attribute: .width, relatedBy: .equal, toItem: filmingGroupScrollView, attribute: .width, multiplier: 1, constant: 1)
@@ -246,7 +278,7 @@ class DetailMovieVC: UIViewController {
         widthConstraintgGroupScrollView.priority = .defaultLow
         NSLayoutConstraint.activate([
             FilmingGroupStackView.topAnchor.constraint(equalTo: filmingGroupScrollView.topAnchor),
-            FilmingGroupStackView.leadingAnchor.constraint(equalTo: filmingGroupScrollView.leadingAnchor, constant: 15),
+            FilmingGroupStackView.leadingAnchor.constraint(equalTo: filmingGroupScrollView.leadingAnchor),
             FilmingGroupStackView.trailingAnchor.constraint(equalTo: filmingGroupScrollView.trailingAnchor),
             FilmingGroupStackView.bottomAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor),
             FilmingGroupStackView.heightAnchor.constraint(equalTo: filmingGroupScrollView.heightAnchor),

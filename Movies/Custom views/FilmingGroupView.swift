@@ -59,40 +59,36 @@ class FilmingGroupView: UIView {
         addSubview(filmingNameLabel)
         addSubview(filmingPositionLabel)
         addSubview(filmingMoviesLabel)
+        
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(lessThanOrEqualToConstant: 250)
+        ])
             
         
         NSLayoutConstraint.activate([
             filmingImageView.topAnchor.constraint(equalTo: topAnchor, constant: 6),
             filmingImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            filmingImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -180),
-            filmingImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -115),
-            filmingImageView.widthAnchor.constraint(equalToConstant: 50),
-//            filmingImageView.heightAnchor.constraint(equalToConstant: 30)
+            filmingImageView.widthAnchor.constraint(equalToConstant: 30),
+            filmingImageView.heightAnchor.constraint(equalToConstant: 50)
         ])
         
         NSLayoutConstraint.activate([
             filmingNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 15),
             filmingNameLabel.leadingAnchor.constraint(equalTo: filmingImageView.trailingAnchor, constant: 10),
-            filmingNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            filmingNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -160),
-            filmingNameLabel.heightAnchor.constraint(equalToConstant: 15)
+            filmingNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
         
         NSLayoutConstraint.activate([
-            filmingPositionLabel.topAnchor.constraint(equalTo: filmingNameLabel.bottomAnchor),
+            filmingPositionLabel.topAnchor.constraint(equalTo: filmingNameLabel.bottomAnchor, constant: 3),
             filmingPositionLabel.leadingAnchor.constraint(equalTo: filmingImageView.trailingAnchor, constant: 10),
-            filmingPositionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
-            filmingPositionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -140),
-            filmingPositionLabel.heightAnchor.constraint(equalToConstant: 8)
+            filmingPositionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
         ])
         
         NSLayoutConstraint.activate([
-            filmingMoviesLabel.topAnchor.constraint(equalTo: filmingPositionLabel.bottomAnchor),
+            filmingMoviesLabel.topAnchor.constraint(equalTo: filmingPositionLabel.bottomAnchor, constant: 8),
             filmingMoviesLabel.leadingAnchor.constraint(equalTo: filmingImageView.trailingAnchor, constant: 10),
-            filmingMoviesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            filmingMoviesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -95),
-//            filmingMoviesLabel.widthAnchor.constraint(equalToConstant: 200),
-//            filmingMoviesLabel.heightAnchor.constraint(equalToConstant: 120)
+            filmingMoviesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            filmingMoviesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
     }
     
