@@ -35,31 +35,38 @@ class ViewController: UIViewController {
         setupTableView()
         
         cells = [
-            .genres([GenreCellModel(name: "Драма"), GenreCellModel(name: "Триллер")]),
+            .genres([GenreCellModel(name: "Драма"), GenreCellModel(name: "Триллер"), GenreCellModel(name: "Комедия"), GenreCellModel(name: "Спорт")]),
             .movie(MovieCellModel(movieImage: "inception_img",
                                   movieName: "Начало",
                                   movieGenre: "Драма",
                                   movieDescription: "Группа специалистов проникает в сознание людей через сны, чтобы украсть или внедрить идеи.",
                                   actors: [
                                     ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо")
+                                    ActorModel(actorImage: "actor_murphy", actorName: "Килиан Мерфи"),
+                                    ActorModel(actorImage: "actor_hardy", actorName: "Том Харди"),
+                                    ActorModel(actorImage: "actor_kane", actorName: "Майкл Кейн")
+                                  ], producers: [
+                                    ProducerModel(producerImage: "producer_nolan", producerName: "Кристофер Нолан", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
+                                    ProducerModel(producerImage: "producer_emma", producerName: "Эмма Томас", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
                                   ])),
+            
+                                    
             .movie(MovieCellModel(movieImage: "squidGame_img",
                                   movieName: "Игра в Кальмара",
                                   movieGenre: "Триллер",
                                   movieDescription: "Сериал повествует о группе людей, которые из-за нужды в деньгах принимают приглашение на участие в тайном турнире на выживание с финальным призом в размере 45,6 млрд вон (38,5 млн долларов США)",
                                   actors: [
                                     
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Леонардо Ди Каприо"),
-                                    ActorModel(actorImage: "actor_leo", actorName: "Роберт Дауни Младший")
+                                    ActorModel(actorImage: "actor_lee", actorName: "Ли Джонджэ"),
+                                    ActorModel(actorImage: "actor_choe", actorName: "Чон Хоен"),
+                                    ActorModel(actorImage: "actor_gong", actorName: "Гон Ю"),
+                                    ActorModel(actorImage: "actor_anupam", actorName: "Анупам Трипати"),
+                                    ActorModel(actorImage: "actor_byung", actorName: "Ли Бен Хон"),
+                                    ActorModel(actorImage: "actor_wi", actorName: "Ви Ха Джун"),
                                     
-                                  ]))
+                                  ], producers: [ProducerModel(producerImage: "producer_hwang", producerName: "Хван Дон Хен", producerPosition: "Режиссёр", producerMovies: "Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние"),
+                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")])),
+                                    
         ]
         tableView.reloadData()
     }

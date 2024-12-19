@@ -38,6 +38,20 @@ struct ActorModel {
     
 }
 
+struct ProducerModel {
+    var producerImage: String
+    var producerName: String
+    var producerPosition: String
+    var producerMovies: String
+    
+    init(producerImage: String, producerName: String, producerPosition: String, producerMovies: String) {
+        self.producerImage = producerImage
+        self.producerName = producerName
+        self.producerPosition = producerPosition
+        self.producerMovies = producerMovies
+    }
+}
+
 
 
 class MovieCellModel {
@@ -46,14 +60,16 @@ class MovieCellModel {
     var movieGenre: String
     var movieDescription: String
     var actors: [ActorModel]
+    var producers: [ProducerModel]
 
     
-    init(movieImage: String, movieName: String, movieGenre: String, movieDescription: String, actors: [ActorModel]) {
+    init(movieImage: String, movieName: String, movieGenre: String, movieDescription: String, actors: [ActorModel], producers: [ProducerModel]) {
         self.movieImage = movieImage
         self.movieName = movieName
         self.movieGenre = movieGenre
         self.movieDescription = movieDescription
         self.actors = actors
+        self.producers = producers
        
     }
 }
