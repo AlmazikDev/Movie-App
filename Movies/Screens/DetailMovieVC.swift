@@ -119,6 +119,7 @@ class DetailMovieVC: UIViewController {
         return stackView
     }()
     
+    let trailerViewComponent = TrailerView()
    
     
     
@@ -126,8 +127,13 @@ class DetailMovieVC: UIViewController {
         super.viewDidLoad()
        
         view.backgroundColor = .systemBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: .share, style: .plain, target: self, action: #selector(shareNavigationButtonTapped))
         setupUI()
         
+    }
+    
+    @objc func shareNavigationButtonTapped() {
+        print("Share button tapped")
     }
     
      func setupMovie(movie: MovieCellModel) {
@@ -179,6 +185,7 @@ class DetailMovieVC: UIViewController {
         mainContentView.addSubview(filmingGroupScrollView)
         view.addSubview(mainScrollView)
         mainScrollView.addSubview(mainContentView)
+        mainContentView.addSubview(trailerViewComponent)
     
        
         
@@ -283,6 +290,12 @@ class DetailMovieVC: UIViewController {
             FilmingGroupStackView.bottomAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor),
             FilmingGroupStackView.heightAnchor.constraint(equalTo: filmingGroupScrollView.heightAnchor),
             widthConstraintgGroupScrollView
+        ])
+        
+        NSLayoutConstraint.activate([
+            trailerViewComponent.topAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor),
+            trailerViewComponent.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            trailerViewComponent.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
         ])
     }
 }
