@@ -48,7 +48,8 @@ class ViewController: UIViewController {
                                   ], producers: [
                                     ProducerModel(producerImage: "producer_nolan", producerName: "Кристофер Нолан", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
                                     ProducerModel(producerImage: "producer_emma", producerName: "Эмма Томас", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
-                                  ])),
+                                  ], trailers: [TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
+                                                TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")])),
             
                                     
             .movie(MovieCellModel(movieImage: "squidGame_img",
@@ -65,7 +66,9 @@ class ViewController: UIViewController {
                                     ActorModel(actorImage: "actor_wi", actorName: "Ви Ха Джун"),
                                     
                                   ], producers: [ProducerModel(producerImage: "producer_hwang", producerName: "Хван Дон Хен", producerPosition: "Режиссёр", producerMovies: "Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние"),
-                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")])),
+                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")],
+                                  trailers: [TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
+                                            TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")])),
                                     
         ]
         tableView.reloadData()

@@ -39,6 +39,13 @@ class DetailMovieVC: UIViewController {
         return label
     }()
     
+    private var starImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "star")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private var movieDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15, weight: .regular)
@@ -101,6 +108,47 @@ class DetailMovieVC: UIViewController {
         return label
     }()
     
+    private var watchAllButtonGroupSide: UIButton = {
+        let button = UIButton()
+        button.setTitle("Смотреть все", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var trailerAndTeaserLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.text = "Трейлер и тизер"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private var watchAllButtonTrailerSide: UIButton = {
+        let button = UIButton()
+        button.setTitle("Смотреть все", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var trailerscrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    
+    private var trailerStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 16
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
     private var filmingGroupScrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,8 +167,6 @@ class DetailMovieVC: UIViewController {
         return stackView
     }()
     
-    let trailerViewComponent = TrailerView()
-   
     
     
     override func viewDidLoad() {
@@ -152,27 +198,21 @@ class DetailMovieVC: UIViewController {
             producerView.configure(producer: producer)
             FilmingGroupStackView.addArrangedSubview(producerView)
          }
+        
+         for trailer in movie.trailers {
+             let trailerView = TrailerView()
+             trailerView.configure(trailer: trailer)
+             trailerStackView.addArrangedSubview(trailerView)
+         }
     }
     
     
     func setupUI() {
-//        view.addSubview(mainContentView)
-//        view.addSubview(mainScrollView)
-//        view.addSubview(movieImage)
-//        view.addSubview(movieNameLabel)
-//        view.addSubview(movieDescriptionLabel)
-//        containerView.addSubview(movieGenreLabel)
-//        view.addSubview(containerView)
-//        view.addSubview(castLabel)
-//        view.addSubview(castScrollView)
-//        castScrollView.addSubview(castParentStackView)
-//        view.addSubview(filmingGroupLabel)
-//        view.addSubview(filmingGroupScrollView)
-////        filmingGroupScrollView.addSubview(FilmingGroupContentView)
-//        filmingGroupScrollView.addSubview(FilmingGroupStackView)
         
         mainContentView.addSubview(movieImage)
         mainContentView.addSubview(movieNameLabel)
+        mainContentView.addSubview(starImageView)
+//        movieNameLabel.addSubview(starImageView)
         mainContentView.addSubview(movieDescriptionLabel)
         mainContentView.addSubview(genreContainerView)
         genreContainerView.addSubview(movieGenreLabel)
@@ -180,16 +220,19 @@ class DetailMovieVC: UIViewController {
         mainContentView.addSubview(castScrollView)
         castScrollView.addSubview(castParentStackView)
         mainContentView.addSubview(filmingGroupLabel)
+        mainContentView.addSubview(watchAllButtonGroupSide)
         mainContentView.addSubview(filmingGroupScrollView)
         filmingGroupScrollView.addSubview(FilmingGroupStackView)
         mainContentView.addSubview(filmingGroupScrollView)
         view.addSubview(mainScrollView)
         mainScrollView.addSubview(mainContentView)
-        mainContentView.addSubview(trailerViewComponent)
+        mainContentView.addSubview(trailerAndTeaserLabel)
+        mainContentView.addSubview(watchAllButtonTrailerSide)
+        mainContentView.addSubview(trailerscrollView)
+        mainContentView.addSubview(trailerStackView)
+        trailerscrollView.addSubview(trailerStackView)
     
        
-        
-        
         
         NSLayoutConstraint.activate([
             mainScrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -224,6 +267,13 @@ class DetailMovieVC: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            starImageView.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 29),
+            starImageView.leadingAnchor.constraint(equalTo: movieNameLabel.trailingAnchor, constant: -13),
+            starImageView.heightAnchor.constraint(equalToConstant: 24),
+            starImageView.widthAnchor.constraint(equalToConstant: 24),
+        ])
+        
+        NSLayoutConstraint.activate([
             movieDescriptionLabel.topAnchor.constraint(equalTo: movieNameLabel.bottomAnchor, constant: 8),
             movieDescriptionLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
             movieDescriptionLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16)
@@ -248,6 +298,13 @@ class DetailMovieVC: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            watchAllButtonGroupSide.topAnchor.constraint(equalTo: movieGenreLabel.bottomAnchor, constant: 17),
+            watchAllButtonGroupSide.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -15),
+            watchAllButtonGroupSide.bottomAnchor.constraint(equalTo: castScrollView.topAnchor, constant: -10),
+            
+        ])
+        
+        NSLayoutConstraint.activate([
             castScrollView.topAnchor.constraint(equalTo: castLabel.bottomAnchor, constant: 12),
             castScrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
             castScrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
@@ -266,11 +323,44 @@ class DetailMovieVC: UIViewController {
             widthConstraint,
         ])
         
+        //Working here
+        
         NSLayoutConstraint.activate([
-            filmingGroupLabel.topAnchor.constraint(equalTo: castParentStackView.bottomAnchor, constant: 12),
+            trailerAndTeaserLabel.topAnchor.constraint(equalTo: castParentStackView.bottomAnchor, constant: 6),
+            trailerAndTeaserLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 15),
+        ])
+        
+        NSLayoutConstraint.activate([
+            watchAllButtonTrailerSide.topAnchor.constraint(equalTo: castParentStackView.bottomAnchor),
+            watchAllButtonTrailerSide.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -15)
+        ])
+        
+        NSLayoutConstraint.activate([
+            trailerscrollView.topAnchor.constraint(equalTo: trailerAndTeaserLabel.bottomAnchor, constant: 12),
+            trailerscrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            trailerscrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
+            trailerscrollView.heightAnchor.constraint(equalToConstant: 136),
+        ])
+        
+        let trailersWidthConstraint = NSLayoutConstraint(item: trailerStackView, attribute: .width, relatedBy: .equal, toItem: trailerscrollView, attribute: .width, multiplier: 1, constant: 1)
+        trailersWidthConstraint.priority = .defaultLow
+        
+        NSLayoutConstraint.activate([
+            trailerStackView.topAnchor.constraint(equalTo: trailerscrollView.topAnchor),
+            trailerStackView.leadingAnchor.constraint(equalTo: trailerscrollView.leadingAnchor, constant: 17),
+            trailerStackView.trailingAnchor.constraint(equalTo: trailerscrollView.trailingAnchor),
+            trailerStackView.bottomAnchor.constraint(equalTo: trailerscrollView.bottomAnchor),
+            trailerStackView.heightAnchor.constraint(equalTo: trailerscrollView.heightAnchor),
+            trailersWidthConstraint
+        ])
+        
+        NSLayoutConstraint.activate([
+            filmingGroupLabel.topAnchor.constraint(equalTo: trailerscrollView.bottomAnchor, constant: 37),
             filmingGroupLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
             filmingGroupLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16),
         ])
+        
+      
         
         NSLayoutConstraint.activate([
             filmingGroupScrollView.topAnchor.constraint(equalTo: filmingGroupLabel.bottomAnchor, constant: 12),
@@ -292,10 +382,6 @@ class DetailMovieVC: UIViewController {
             widthConstraintgGroupScrollView
         ])
         
-        NSLayoutConstraint.activate([
-            trailerViewComponent.topAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor),
-            trailerViewComponent.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
-            trailerViewComponent.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
-        ])
+       
     }
 }
