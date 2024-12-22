@@ -31,6 +31,50 @@ class DetailMovieVC: UIViewController {
         return imageView
     } ()
     
+    var buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    var containerButtonView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemYellow
+        view.layer.cornerRadius = 24
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    var watchLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Смотреть"
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 24, weight: .medium)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var downloadButton: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "download")
+        imageView.tintColor = .black
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    var favouriteButton: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "favourite")
+        imageView.tintColor = .black
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private var movieNameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 36, weight: .bold)
@@ -42,6 +86,7 @@ class DetailMovieVC: UIViewController {
     private var starImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "star")
+        imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -174,6 +219,7 @@ class DetailMovieVC: UIViewController {
        
         view.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .share, style: .plain, target: self, action: #selector(shareNavigationButtonTapped))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         setupUI()
         
     }
@@ -210,6 +256,12 @@ class DetailMovieVC: UIViewController {
     func setupUI() {
         
         mainContentView.addSubview(movieImage)
+        mainContentView.addSubview(buttonsStackView)
+        mainContentView.addSubview(containerButtonView)
+        containerButtonView.addSubview(watchLabel)
+        buttonsStackView.addArrangedSubview(containerButtonView)
+        buttonsStackView.addArrangedSubview(downloadButton)
+        buttonsStackView.addArrangedSubview(favouriteButton)
         mainContentView.addSubview(movieNameLabel)
         mainContentView.addSubview(starImageView)
 //        movieNameLabel.addSubview(starImageView)
@@ -261,16 +313,38 @@ class DetailMovieVC: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 16),
-            movieNameLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
-            movieNameLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16)
+            buttonsStackView.centerXAnchor.constraint(equalTo: mainContentView.centerXAnchor),
+            buttonsStackView.bottomAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: -15)
+        ])
+        
+        
+        NSLayoutConstraint.activate([
+            watchLabel.topAnchor.constraint(equalTo: containerButtonView.topAnchor, constant: 8),
+            watchLabel.leadingAnchor.constraint(equalTo: containerButtonView.leadingAnchor, constant: 16),
+            watchLabel.trailingAnchor.constraint(equalTo: containerButtonView.trailingAnchor, constant: -16),
+            watchLabel.bottomAnchor.constraint(equalTo: containerButtonView.bottomAnchor, constant: -8),
         ])
         
         NSLayoutConstraint.activate([
-            starImageView.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 29),
-            starImageView.leadingAnchor.constraint(equalTo: movieNameLabel.trailingAnchor, constant: -13),
-            starImageView.heightAnchor.constraint(equalToConstant: 24),
-            starImageView.widthAnchor.constraint(equalToConstant: 24),
+            downloadButton.heightAnchor.constraint(equalToConstant: 45),
+            downloadButton.widthAnchor.constraint(equalToConstant: 45),
+        ])
+        
+        NSLayoutConstraint.activate([
+            favouriteButton.widthAnchor.constraint(equalToConstant: 45),
+            favouriteButton.heightAnchor.constraint(equalToConstant: 45),
+        ])
+        
+        NSLayoutConstraint.activate([
+            movieNameLabel.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 16),
+            movieNameLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
+        ])
+        
+        NSLayoutConstraint.activate([
+            starImageView.topAnchor.constraint(equalTo: movieImage.bottomAnchor, constant: 26),
+            starImageView.leadingAnchor.constraint(equalTo: movieNameLabel.trailingAnchor, constant: 13),
+            starImageView.heightAnchor.constraint(equalToConstant: 26),
+            starImageView.widthAnchor.constraint(equalToConstant: 26),
         ])
         
         NSLayoutConstraint.activate([
