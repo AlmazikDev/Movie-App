@@ -264,7 +264,6 @@ class DetailMovieVC: UIViewController {
         buttonsStackView.addArrangedSubview(favouriteButton)
         mainContentView.addSubview(movieNameLabel)
         mainContentView.addSubview(starImageView)
-//        movieNameLabel.addSubview(starImageView)
         mainContentView.addSubview(movieDescriptionLabel)
         mainContentView.addSubview(genreContainerView)
         genreContainerView.addSubview(movieGenreLabel)
