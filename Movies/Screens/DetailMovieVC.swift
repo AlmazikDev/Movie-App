@@ -42,7 +42,7 @@ class DetailMovieVC: UIViewController {
     
     var containerButtonView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemYellow
+        view.backgroundColor = UIColor(red: 1, green: 0.68, blue: 0, alpha: 1)
         view.layer.cornerRadius = 24
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
