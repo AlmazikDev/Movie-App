@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     private var selectedGenreValue: GenreCellModel?
     
+    private let searchController: UISearchController = UISearchController(searchResultsController: nil)
     
     var tableView: UITableView = {
         let table = UITableView()
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupTableView()
+        setupSearchController()
         
         cells = [
             .genres([GenreCellModel(name: "Драма"), GenreCellModel(name: "Триллер"), GenreCellModel(name: "Комедия"), GenreCellModel(name: "Спорт")]),
@@ -82,6 +84,17 @@ class ViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Введите название фильма..."
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }
 
@@ -139,4 +152,12 @@ extension ViewController: GenresTableViewCellDelegate {
         selectedGenreValue = genre
         print(selectedGenreValue)
     }
+}
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text)
+    }
+    
+    
 }
