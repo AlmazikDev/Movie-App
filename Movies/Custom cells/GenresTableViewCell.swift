@@ -8,12 +8,13 @@
 import UIKit
 
 protocol GenresTableViewCellDelegate: AnyObject {
-    func filterMovies(by genre: GenreCellModel)
+    func filterMovies(by genre: GenreCellModel?)
 }
 
 class GenresTableViewCell: UITableViewCell {
     
     var genres = [GenreCellModel]()
+    var selectedGenre: GenreCellModel?
     
     private var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -46,21 +47,22 @@ class GenresTableViewCell: UITableViewCell {
     }
     
     func setup(genres: [GenreCellModel]) {
-        self.genres = genres // what does this line mean ?
+        self.genres = genres
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for iteration in genres.enumerated() {
+            let isSelected = iteration.element == selectedGenre
             let containerView = UIView()
+            containerView.tag = iteration.offset
             containerView.backgroundColor = .systemGray5
             containerView.layer.cornerRadius = 8
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onGenreWasSelected))
             containerView.addGestureRecognizer(tapGesture)
             
             let label = UILabel()
-            label.font = .systemFont(ofSize: 18, weight: .regular)
+            label.font = .systemFont(ofSize: 18, weight: isSelected ? .bold : .regular)
             label.text = iteration.element.name
             label.tag = iteration.offset
             label.isUserInteractionEnabled = true
-            
             
             containerView.addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +103,14 @@ class GenresTableViewCell: UITableViewCell {
     }
     
     @objc private func onGenreWasSelected(sender: UITapGestureRecognizer) {
-        let genre = genres[sender.view?.tag ?? 0]
-        delegate?.filterMovies(by: genre)
+        let tappedGenge = genres[sender.view?.tag ?? 0]
+        if selectedGenre == tappedGenge {
+            selectedGenre = nil
+        } else {
+            selectedGenre = tappedGenge
+        }
+        
+        setup(genres: genres)
+        delegate?.filterMovies(by: selectedGenre)
     }
 }
