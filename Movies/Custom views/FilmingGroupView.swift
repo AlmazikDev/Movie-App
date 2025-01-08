@@ -60,6 +60,7 @@ class FilmingGroupView: UIView {
         addSubview(filmingPositionLabel)
         addSubview(filmingMoviesLabel)
         
+        
         NSLayoutConstraint.activate([
             widthAnchor.constraint(lessThanOrEqualToConstant: 250)
         ])
@@ -90,6 +91,7 @@ class FilmingGroupView: UIView {
             filmingMoviesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             filmingMoviesLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
+        
     }
     
     func configure(producer: ProducerModel) {

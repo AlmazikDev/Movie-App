@@ -9,10 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var cells = [CellType]()
+    var cells = [CellType]()
     
     private var selectedGenreValue: GenreCellModel?
     
+    private let searchController: UISearchController = UISearchController(searchResultsController: nil)
+    
+    var currentMovieArray = [MovieCellModel]()
     
     var tableView: UITableView = {
         let table = UITableView()
@@ -33,6 +36,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         setupTableView()
+        setupSearchController()
         
         cells = [
             .genres([GenreCellModel(name: "Драма"), GenreCellModel(name: "Триллер"), GenreCellModel(name: "Комедия"), GenreCellModel(name: "Спорт")]),
@@ -48,7 +52,8 @@ class ViewController: UIViewController {
                                   ], producers: [
                                     ProducerModel(producerImage: "producer_nolan", producerName: "Кристофер Нолан", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
                                     ProducerModel(producerImage: "producer_emma", producerName: "Эмма Томас", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
-                                  ])),
+                                  ], trailers: [TrailerModel(trailerImage: "inception_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
+                                                TrailerModel(trailerImage: "inception_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")])),
             
                                     
             .movie(MovieCellModel(movieImage: "squidGame_img",
@@ -65,7 +70,9 @@ class ViewController: UIViewController {
                                     ActorModel(actorImage: "actor_wi", actorName: "Ви Ха Джун"),
                                     
                                   ], producers: [ProducerModel(producerImage: "producer_hwang", producerName: "Хван Дон Хен", producerPosition: "Режиссёр", producerMovies: "Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние"),
-                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")])),
+                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")],
+                                  trailers: [TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
+                                            TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")])),
                                     
         ]
         tableView.reloadData()
@@ -79,6 +86,17 @@ class ViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Введите название фильма..."
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = false
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 }
 
@@ -134,6 +152,18 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: GenresTableViewCellDelegate {
     func filterMovies(by genre: GenreCellModel) {
         selectedGenreValue = genre
-        print(selectedGenreValue)
+        print(selectedGenreValue?.name)
     }
 }
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text)
+        currentMovieArray = cells
+        currentMovieArray.filter { $0.movieName.contains(searchController.searchBar.text!) }
+        print(currentMovieArray)
+    }
+    
+    
+}
+

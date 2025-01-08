@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52160A962CFF93A600328D01 /* GenresTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52160A952CFF93A600328D01 /* GenresTableViewCell.swift */; };
+		523756812D158BAE004600C1 /* TrailerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523756802D158BAE004600C1 /* TrailerView.swift */; };
 		525BCD6D2CFC9E1800CAA684 /* DetailMovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525BCD6C2CFC9E1800CAA684 /* DetailMovieVC.swift */; };
 		527509D52D0C907D00E643C1 /* FilmingGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527509D42D0C907D00E643C1 /* FilmingGroupView.swift */; };
 		52895BDF2CF109D100A2FC28 /* MoviesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52895BDE2CF109D100A2FC28 /* MoviesTableViewCell.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		52160A952CFF93A600328D01 /* GenresTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresTableViewCell.swift; sourceTree = "<group>"; };
+		523756802D158BAE004600C1 /* TrailerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerView.swift; sourceTree = "<group>"; };
 		525BCD6C2CFC9E1800CAA684 /* DetailMovieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieVC.swift; sourceTree = "<group>"; };
 		527509D42D0C907D00E643C1 /* FilmingGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmingGroupView.swift; sourceTree = "<group>"; };
 		52895BDE2CF109D100A2FC28 /* MoviesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewCell.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			children = (
 				7C1B085E2D09CDCB00CBB684 /* CastActorView.swift */,
 				527509D42D0C907D00E643C1 /* FilmingGroupView.swift */,
+				523756802D158BAE004600C1 /* TrailerView.swift */,
 			);
 			path = "Custom views";
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523756812D158BAE004600C1 /* TrailerView.swift in Sources */,
 				52895BDF2CF109D100A2FC28 /* MoviesTableViewCell.swift in Sources */,
 				525BCD6D2CFC9E1800CAA684 /* DetailMovieVC.swift in Sources */,
 				52160A962CFF93A600328D01 /* GenresTableViewCell.swift in Sources */,
