@@ -14,7 +14,7 @@ enum CellType {
 }
 
 
-class GenreCellModel {
+struct GenreCellModel: Hashable {
     
     var name: String
     var selected = false

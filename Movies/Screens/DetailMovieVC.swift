@@ -155,7 +155,7 @@ class DetailMovieVC: UIViewController {
     
     private var watchAllButtonGroupSide: UIButton = {
         let button = UIButton()
-        button.setTitle("Смотреть все", for: .normal)
+        button.setTitle("Смотреть все2", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.translatesAutoresizingMaskIntoConstraints = false
