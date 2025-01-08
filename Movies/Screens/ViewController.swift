@@ -9,11 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var cells = [CellType]()
+    var cells = [CellType]()
     
     private var selectedGenreValue: GenreCellModel?
     
     private let searchController: UISearchController = UISearchController(searchResultsController: nil)
+    
+    var currentMovieArray = [MovieCellModel]()
     
     var tableView: UITableView = {
         let table = UITableView()
@@ -68,7 +70,7 @@ class ViewController: UIViewController {
                                     ActorModel(actorImage: "actor_wi", actorName: "Ви Ха Джун"),
                                     
                                   ], producers: [ProducerModel(producerImage: "producer_hwang", producerName: "Хван Дон Хен", producerPosition: "Режиссёр", producerMovies: "Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние"),
-                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")],
+                                                 ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")],
                                   trailers: [TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
                                             TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")])),
                                     
@@ -150,14 +152,18 @@ extension ViewController: UITableViewDelegate {
 extension ViewController: GenresTableViewCellDelegate {
     func filterMovies(by genre: GenreCellModel) {
         selectedGenreValue = genre
-        print(selectedGenreValue)
+        print(selectedGenreValue?.name)
     }
 }
 
 extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         print(searchController.searchBar.text)
+        currentMovieArray = cells
+        currentMovieArray.filter { $0.movieName.contains(searchController.searchBar.text!) }
+        print(currentMovieArray)
     }
     
     
 }
+
