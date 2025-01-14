@@ -155,9 +155,10 @@ class DetailMovieVC: UIViewController {
     
     private var watchAllButtonGroupSide: UIButton = {
         let button = UIButton()
-        button.setTitle("Смотреть все2", for: .normal)
+        button.setTitle("Смотреть все", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -212,6 +213,7 @@ class DetailMovieVC: UIViewController {
         return stackView
     }()
     
+    let castVC = CastVC()
     
     
     override func viewDidLoad() {
@@ -228,6 +230,11 @@ class DetailMovieVC: UIViewController {
         print("Share button tapped")
     }
     
+    @objc func buttonTapped() {
+        print("cast button tapped")
+        navigationController?.pushViewController(castVC, animated: true)
+    }
+    
      func setupMovie(movie: MovieCellModel) {
         movieImage.image = UIImage(named: movie.movieImage)
         movieNameLabel.text = movie.movieName
@@ -237,6 +244,7 @@ class DetailMovieVC: UIViewController {
             let actorView = CastActorView()
             actorView.configure(model: actor)
             castParentStackView.addArrangedSubview(actorView)
+            castVC.actorArray.append(actor)
         }
          
         for producer in movie.producers {

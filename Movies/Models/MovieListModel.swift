@@ -26,17 +26,41 @@ struct GenreCellModel: Hashable {
     
 }
 
-struct ActorModel {
+class ActorModel {
     
     var actorImage: String
     var actorName: String
+    var secondName: String?
+    var dateOfBirthAndAge: String?
+    var nickname: String?
     
-    init(actorImage: String, actorName: String) {
+    
+    init(actorImage: String, actorName: String, secondName: String? = nil, dateOfBirthAndAge: String? = nil, nickname: String? = nil) {
         self.actorImage = actorImage
         self.actorName = actorName
+        self.secondName = secondName
+        self.dateOfBirthAndAge = dateOfBirthAndAge
+        self.nickname = nickname
+        
     }
     
 }
+
+//class ActorCellModel: ActorModel {
+//    var actorModel: ActorModel
+//    var secondName: String
+//    var dateOfBirthAndAge: String
+//    var nickname: String
+//    
+//    init(actorModel: ActorModel, secondName: String, dateOfBirthAndAge: String, nickname: String) {
+//        self.actorModel = actorModel
+//        self.secondName = secondName
+//        self.dateOfBirthAndAge = dateOfBirthAndAge
+//        self.nickname = nickname
+//        super.init(actorImage: actorModel.actorImage, actorName: actorModel.actorName)
+//    }
+//    
+//}
 
 struct ProducerModel {
     var producerImage: String
