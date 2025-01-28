@@ -87,10 +87,32 @@ final class ViewController: UIViewController {
                                        dateOfBirthAndAge: "14 марта 1933  •  91 лет",
                                        nickname: "Miles")
                            ], producers: [
-                            ProducerModel(producerImage: "producer_nolan", producerName: "Кристофер Нолан", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
-                            ProducerModel(producerImage: "producer_emma", producerName: "Эмма Томас", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
-                           ], trailers: [TrailerModel(trailerImage: "inception_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
-                                         TrailerModel(trailerImage: "inception_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")]),
+                            ProducerModel(producerImage: "producer_nolan",
+                                          producerName: "Кристофер Нолан",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
+                            ProducerModel(producerImage: "producer_emma",
+                                          producerName: "Эмма Томас",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
+                           ], trailers: [
+                            TrailerModel(trailerImage: "inception_img",
+                                         trailerName: "Трейлер",
+                                         trailerDate: "26 июля 2024"),
+                                         TrailerModel(trailerImage: "inception_img",
+                                                      trailerName: "Трейлер",
+                                                      trailerDate: "26 июля 2024")],
+                           reviews: [
+                                            ReviewModel(avatarImage: "actor_leo",
+                                                        reviewerName: "Leonardo",
+                                                        dateOfReview: "15 сентября 2024",
+                                                        titleOfReview: "Должник благодарности",
+                                                        contentOfReview: "This is review of movie This is review of movie This is review of movie This is review of movie This is review of movie This is review of movie  "),
+                                            ReviewModel(avatarImage: "actor_leo",
+                                                        reviewerName: "Leonardo",
+                                                        dateOfReview: "15 сентября 2024",
+                                                        titleOfReview: "This was awesome movie",
+                                                        contentOfReview: "This is review of movie This is review of movie This is review of movie")]),
             MovieCellModel(movieImage: "1+1_img",
                            movieName: "1+1",
                            movieGenre: "Комедия",
@@ -112,10 +134,31 @@ final class ViewController: UIViewController {
                                        dateOfBirthAndAge: "6 июль 1977  •  47 лет",
                                        nickname: "Magalie"),
                            ], producers: [
-                            ProducerModel(producerImage: "producer_eric", producerName: "Эрик Толедано", producerPosition: "Режиссёр", producerMovies: "Шопоголики, Особенные, Самба, 1+1 Голливудская история"),
-                            ProducerModel(producerImage: "producer_olivie", producerName: "Оливье Накаш", producerPosition: "Режиссёр", producerMovies: "Шопоголики, Особенные, Самба, 1+1 Голливудская история")
-                           ], trailers: [TrailerModel(trailerImage: "1+1_img", trailerName: "Трейлер", trailerDate: "9 апреля 2012"),
-                                         TrailerModel(trailerImage: "1+1_img", trailerName: "Трейлер", trailerDate: "10 сентября 2012")]),
+                            ProducerModel(producerImage: "producer_eric",
+                                          producerName: "Эрик Толедано",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Шопоголики, Особенные, Самба, 1+1 Голливудская история"),
+                            ProducerModel(producerImage: "producer_olivie",
+                                          producerName: "Оливье Накаш",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Шопоголики, Особенные, Самба, 1+1 Голливудская история")
+                           ], trailers: [TrailerModel(trailerImage: "1+1_img",
+                                                      trailerName: "Трейлер",
+                                                      trailerDate: "9 апреля 2012"),
+                                         TrailerModel(trailerImage: "1+1_img",
+                                                      trailerName: "Трейлер",
+                                                      trailerDate: "10 сентября 2012")],
+                           reviews: [
+                                            ReviewModel(avatarImage: "actor_leo",
+                                                        reviewerName: "Leonardo",
+                                                        dateOfReview: "15 сентября 2024",
+                                                        titleOfReview: "Well movie is good",
+                                                        contentOfReview: "This is review of movie"),
+                                            ReviewModel(avatarImage: "actor_leo",
+                                                        reviewerName: "Leonardo",
+                                                        dateOfReview: "15 сентября 2024",
+                                                        titleOfReview: "I don't like this movie at all",
+                                                        contentOfReview: "This is review of movie")]),
             
             MovieCellModel(movieImage: "inception_img",
                            movieName: "Как приучить дракона",
@@ -126,11 +169,28 @@ final class ViewController: UIViewController {
                             ActorModel(actorImage: "actor_murphy", actorName: "Килиан Мерфи"),
                             ActorModel(actorImage: "actor_hardy", actorName: "Том Харди"),
                             ActorModel(actorImage: "actor_kane", actorName: "Майкл Кейн")
-                           ], producers: [
-                            ProducerModel(producerImage: "producer_nolan", producerName: "Кристофер Нолан", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
-                            ProducerModel(producerImage: "producer_emma", producerName: "Эмма Томас", producerPosition: "Режиссёр", producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
-                           ], trailers: [TrailerModel(trailerImage: "inception_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
-                                         TrailerModel(trailerImage: "inception_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")]),
+                           ],
+                           producers: [
+                            ProducerModel(producerImage: "producer_nolan",
+                                          producerName: "Кристофер Нолан",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод"),
+                            ProducerModel(producerImage: "producer_emma",
+                                          producerName: "Эмма Томас",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Интерстеллар, Оппенгеймер, Престиж, Темный Рыцарь ,Бэтмэн, Довод")
+                           ],
+                           trailers: [TrailerModel(trailerImage: "inception_img",
+                                                      trailerName: "Трейлер",
+                                                      trailerDate: "26 июля 2024"),
+                                         TrailerModel(trailerImage: "inception_img",
+                                                      trailerName: "Трейлер",
+                                                      trailerDate: "26 июля 2024")],
+                           reviews: [ReviewModel(avatarImage: "actor_leo",
+                                                 reviewerName: "Leonardo",
+                                                 dateOfReview: "15 сентября 2024",
+                                                 titleOfReview: "Test",
+                                                 contentOfReview: "This is review of movie")]),
             MovieCellModel(movieImage: "squidGame_img",
                            movieName: "Игра в Кальмара",
                            movieGenre: "Триллер",
@@ -166,10 +226,28 @@ final class ViewController: UIViewController {
                                        dateOfBirthAndAge: "5 августа 1991  •  33 лет",
                                        nickname: "Wi Ha-joon"),
                             
-                           ], producers: [ProducerModel(producerImage: "producer_hwang", producerName: "Хван Дон Хен", producerPosition: "Режиссёр", producerMovies: "Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние"),
-                                          ProducerModel(producerImage: "producer_kim", producerName: "Ким Джи Ен", producerPosition: "Режиссёр", producerMovies: " Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")],
-                           trailers: [TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024"),
-                                      TrailerModel(trailerImage: "squidGame_img", trailerName: "Трейлер", trailerDate: "26 июля 2024")])
+                           ], producers: [
+                            ProducerModel(producerImage: "producer_hwang",
+                                          producerName: "Хван Дон Хен",
+                                          producerPosition: "Режиссёр",
+                                          producerMovies: "Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние"),
+                                          ProducerModel(producerImage: "producer_kim",
+                                                        producerName: "Ким Джи Ен",
+                                                        producerPosition: "Режиссёр",
+                                                        producerMovies: " Игра в Кальмара, Ограбление Склепа, Мисс Бабуля, Суровое испытание ,Чудесная дорога, Отчаяние")],
+                           trailers: [
+                            TrailerModel(trailerImage: "squidGame_img",
+                                         trailerName: "Трейлер",
+                                         trailerDate: "26 июля 2024"),
+                                      TrailerModel(trailerImage: "squidGame_img",
+                                                   trailerName: "Трейлер",
+                                                   trailerDate: "26 июля 2024")],
+                           reviews: [
+                                        ReviewModel(avatarImage: "actor_leo",
+                                                    reviewerName: "Leonardo",
+                                                    dateOfReview: "15 сентября 2024",
+                                                    titleOfReview: "This is a title of movie",
+                                                    contentOfReview: "This is review of movie")])
             
             
         ]
@@ -177,6 +255,8 @@ final class ViewController: UIViewController {
         filterMovies()
         tableView.reloadData()
     }
+    
+    
 
     private func setupTableView() {
         view.addSubview(tableView)

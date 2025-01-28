@@ -41,7 +41,6 @@ class ActorModel {
         self.secondName = secondName
         self.dateOfBirthAndAge = dateOfBirthAndAge
         self.nickname = nickname
-        
     }
     
 }
@@ -89,6 +88,22 @@ struct TrailerModel {
     }
 }
 
+struct ReviewModel {
+    var avatarImage: String
+    var reviewerName: String
+    var dateOfReview: String
+    var titleOfReview: String
+    var contentOfReview: String
+    
+    init(avatarImage: String, reviewerName: String, dateOfReview: String, titleOfReview: String, contentOfReview: String) {
+        self.avatarImage = avatarImage
+        self.reviewerName = reviewerName
+        self.dateOfReview = dateOfReview
+        self.titleOfReview = titleOfReview
+        self.contentOfReview = contentOfReview
+    }
+}
+
 
 
 class MovieCellModel {
@@ -99,9 +114,10 @@ class MovieCellModel {
     var actors: [ActorModel]
     var producers: [ProducerModel]
     var trailers: [TrailerModel]
+    var reviews: [ReviewModel]
 
     
-    init(movieImage: String, movieName: String, movieGenre: String, movieDescription: String, actors: [ActorModel], producers: [ProducerModel], trailers: [TrailerModel]) {
+    init(movieImage: String, movieName: String, movieGenre: String, movieDescription: String, actors: [ActorModel], producers: [ProducerModel], trailers: [TrailerModel], reviews: [ReviewModel]) {
         self.movieImage = movieImage
         self.movieName = movieName
         self.movieGenre = movieGenre
@@ -109,5 +125,6 @@ class MovieCellModel {
         self.actors = actors
         self.producers = producers
         self.trailers = trailers
+        self.reviews = reviews
     }
 }

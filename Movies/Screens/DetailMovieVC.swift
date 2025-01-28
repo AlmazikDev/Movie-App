@@ -37,6 +37,7 @@ class DetailMovieVC: UIViewController {
         stackView.distribution = .fill
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.isUserInteractionEnabled = true
         return stackView
     }()
     
@@ -72,6 +73,9 @@ class DetailMovieVC: UIViewController {
         imageView.image = UIImage(named: "favourite")
         imageView.tintColor = .black
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleFavouriteButton))
+        imageView.addGestureRecognizer(tapGestureRecognizer)
         return imageView
     }()
     
@@ -213,8 +217,45 @@ class DetailMovieVC: UIViewController {
         return stackView
     }()
     
-    let castVC = CastVC()
+    private var reviewLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        label.textAlignment = .left
+        label.text = "Рецензии"
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
+    private var watchAllButtonReviewSide: UIButton = {
+        let button = UIButton()
+        button.setTitle("Все", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private var reviewScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        return scrollView
+    }()
+    
+    private var reviewStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 14
+        stackView.distribution = .fill
+        stackView.alignment = .leading
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+    
+    let castVC = CastVC()
+    let showMoreComponent = ShowMoreView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,17 +264,35 @@ class DetailMovieVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .share, style: .plain, target: self, action: #selector(shareNavigationButtonTapped))
         navigationItem.rightBarButtonItem?.tintColor = .black
         setupUI()
-        
     }
     
     @objc func shareNavigationButtonTapped() {
         print("Share button tapped")
+        
+        let alert = UIAlertController(title: "Добавить в список", message: "Выберите папку куда хотите добавить?", preferredStyle: .actionSheet)
+        
+        let willWatchButton = UIAlertAction(title: "Буду смотреть", style: .default)
+        let watchedButton = UIAlertAction(title: "Посмотрел", style: .default)
+        let dissmissButton = UIAlertAction(title: "Отменить", style: .cancel)
+        
+        alert.addAction(willWatchButton)
+        alert.addAction(watchedButton)
+        alert.addAction(dissmissButton)
+        
+        present(alert, animated: true)
     }
     
     @objc func buttonTapped() {
         print("cast button tapped")
         navigationController?.pushViewController(castVC, animated: true)
     }
+    
+    @objc func handleFavouriteButton(sender: UITapGestureRecognizer) {
+        if sender.state == .ended{
+            print("favourite imageView pressed")
+        }
+    }
+    
     
      func setupMovie(movie: MovieCellModel) {
         movieImage.image = UIImage(named: movie.movieImage)
@@ -257,6 +316,14 @@ class DetailMovieVC: UIViewController {
              let trailerView = TrailerView()
              trailerView.configure(trailer: trailer)
              trailerStackView.addArrangedSubview(trailerView)
+         }
+         
+         for review in movie.reviews {
+             let reviewComponent = ReviewComponent()
+             reviewComponent.configureReview(review: review)
+             reviewStackView.addArrangedSubview(reviewComponent)
+             reviewStackView.addArrangedSubview(showMoreComponent)
+
          }
     }
     
@@ -290,6 +357,11 @@ class DetailMovieVC: UIViewController {
         mainContentView.addSubview(trailerscrollView)
         mainContentView.addSubview(trailerStackView)
         trailerscrollView.addSubview(trailerStackView)
+        mainContentView.addSubview(reviewLabel)
+        mainContentView.addSubview(watchAllButtonReviewSide)
+        mainContentView.addSubview(reviewScrollView)
+        mainContentView.addSubview(reviewStackView)
+        reviewScrollView.addSubview(reviewStackView)
     
        
         
@@ -441,7 +513,6 @@ class DetailMovieVC: UIViewController {
             filmingGroupLabel.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16),
         ])
         
-      
         
         NSLayoutConstraint.activate([
             filmingGroupScrollView.topAnchor.constraint(equalTo: filmingGroupLabel.bottomAnchor, constant: 12),
@@ -462,6 +533,38 @@ class DetailMovieVC: UIViewController {
             FilmingGroupStackView.heightAnchor.constraint(equalTo: filmingGroupScrollView.heightAnchor),
             widthConstraintgGroupScrollView
         ])
+        
+        NSLayoutConstraint.activate([
+            reviewLabel.topAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor, constant: 16),
+            reviewLabel.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor, constant: 16),
+        ])
+        
+        NSLayoutConstraint.activate([
+            watchAllButtonReviewSide.topAnchor.constraint(equalTo: filmingGroupScrollView.bottomAnchor, constant: 10),
+            watchAllButtonReviewSide.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor, constant: -16),
+        ])
+        
+        NSLayoutConstraint.activate([
+            reviewScrollView.topAnchor.constraint(equalTo: reviewLabel.bottomAnchor, constant: 16),
+            reviewScrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
+            reviewScrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
+//            reviewScrollView.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
+            reviewScrollView.heightAnchor.constraint(equalToConstant: 250),
+        ])
+        
+        let widthConstraintReviewScrollView = NSLayoutConstraint(item: reviewStackView, attribute: .width, relatedBy: .equal, toItem: reviewScrollView, attribute: .width, multiplier: 1, constant: 1)
+        widthConstraintReviewScrollView.priority = .defaultLow
+        
+        NSLayoutConstraint.activate([
+            reviewStackView.topAnchor.constraint(equalTo: reviewScrollView.topAnchor),
+            reviewStackView.leadingAnchor.constraint(equalTo: reviewScrollView.leadingAnchor),
+            reviewStackView.trailingAnchor.constraint(equalTo: reviewScrollView.trailingAnchor),
+            reviewStackView.bottomAnchor.constraint(equalTo: reviewScrollView.bottomAnchor),
+            reviewStackView.heightAnchor.constraint(equalTo: reviewScrollView.heightAnchor),
+            widthConstraintReviewScrollView
+        ])
+        
+        
         
        
     }
