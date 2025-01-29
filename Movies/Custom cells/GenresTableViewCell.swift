@@ -103,11 +103,11 @@ class GenresTableViewCell: UITableViewCell {
     }
     
     @objc private func onGenreWasSelected(sender: UITapGestureRecognizer) {
-        let tappedGenge = genres[sender.view?.tag ?? 0]
-        if selectedGenre == tappedGenge {
+        let tappedGenre = genres[sender.view?.tag ?? 0]
+        if selectedGenre == tappedGenre {
             selectedGenre = nil
         } else {
-            selectedGenre = tappedGenge
+            selectedGenre = tappedGenre
         }
         
         setup(genres: genres)
