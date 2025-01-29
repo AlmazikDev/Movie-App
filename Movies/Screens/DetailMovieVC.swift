@@ -323,7 +323,6 @@ class DetailMovieVC: UIViewController {
              reviewComponent.configureReview(review: review)
              reviewStackView.addArrangedSubview(reviewComponent)
              reviewStackView.addArrangedSubview(showMoreComponent)
-
          }
     }
     
@@ -360,7 +359,6 @@ class DetailMovieVC: UIViewController {
         mainContentView.addSubview(reviewLabel)
         mainContentView.addSubview(watchAllButtonReviewSide)
         mainContentView.addSubview(reviewScrollView)
-        mainContentView.addSubview(reviewStackView)
         reviewScrollView.addSubview(reviewStackView)
     
        
@@ -518,7 +516,7 @@ class DetailMovieVC: UIViewController {
             filmingGroupScrollView.topAnchor.constraint(equalTo: filmingGroupLabel.bottomAnchor, constant: 12),
             filmingGroupScrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
             filmingGroupScrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
-            filmingGroupScrollView.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
+//            filmingGroupScrollView.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
             filmingGroupScrollView.heightAnchor.constraint(equalToConstant: 120)
         ])
         
@@ -548,7 +546,7 @@ class DetailMovieVC: UIViewController {
             reviewScrollView.topAnchor.constraint(equalTo: reviewLabel.bottomAnchor, constant: 16),
             reviewScrollView.leadingAnchor.constraint(equalTo: mainContentView.leadingAnchor),
             reviewScrollView.trailingAnchor.constraint(equalTo: mainContentView.trailingAnchor),
-//            reviewScrollView.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
+            reviewScrollView.bottomAnchor.constraint(equalTo: mainContentView.bottomAnchor),
             reviewScrollView.heightAnchor.constraint(equalToConstant: 250),
         ])
         
@@ -563,8 +561,6 @@ class DetailMovieVC: UIViewController {
             reviewStackView.heightAnchor.constraint(equalTo: reviewScrollView.heightAnchor),
             widthConstraintReviewScrollView
         ])
-        
-        
         
        
     }

@@ -5,7 +5,6 @@
 //  Created by Almaz  on 15.01.2025.
 //
 
-import Foundation
 import UIKit
 
 class ReviewComponent: UIView {
@@ -56,11 +55,9 @@ class ReviewComponent: UIView {
     }()
     
     
-    
     init() {
         super.init(frame: .zero)
         setupReviewUI()
-        reviewContentLabel.sizeToFit()
     }
     
     required init?(coder: NSCoder) {
@@ -76,7 +73,6 @@ class ReviewComponent: UIView {
         addSubview(dateReviewLabel)
         addSubview(reviewTitleLabel)
         addSubview(reviewContentLabel)
-        
         
         NSLayoutConstraint.activate([
             avatarImage.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -120,7 +116,6 @@ class ReviewComponent: UIView {
         dateReviewLabel.text = review.dateOfReview
         reviewTitleLabel.text = review.titleOfReview
         reviewContentLabel.text = review.contentOfReview
-        
     }
 }
 
